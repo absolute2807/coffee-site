@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee Time | Local Coffee Shop</title>
+  <meta name="description" content="Warm, cozy local coffee shop. Freshly brewed coffee, pastries, and friendly service." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brown: {
+              dark: '#6b4a42',
+              DEFAULT: '#8c6b5e',
+              light: '#c9b3a5',
+              lighter: '#e8ddcf',
+            },
+            beige: {
+              dark: '#f5f1ea',
+              DEFAULT: '#faf7f1',
+              light: '#f3efe4',
+            },
+            'coffee-text': '#4a3a33',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'cozy': '0 10px 30px -10px rgba(107, 74, 66, 0.15)',
+            'cozy-lg': '0 20px 40px -15px rgba(107, 74, 66, 0.2)',
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #faf7f1; color: #4a3a33; overflow-x: hidden; }
+    .section-padding { padding: 5rem 1rem; }
+    @media (min-width: 768px) { .section-padding { padding: 7rem 1.5rem; } }
+    .cozy-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .cozy-card:hover { transform: translateY(-4px); box-shadow: var(--tw-ring-offset-shadow), var(--tw-shadow), var(--tw-shadow-0050-50); }
+    .hero-overlay { background: linear-gradient(180deg, rgba(107, 74, 66, 0.55) 0%, rgba(107, 74, 66, 0.25) 60%, rgba(107, 74, 66, 0.15) 100%); }
+    input:focus, textarea:focus, select:focus { outline: 2px solid #8c6b5e; outline-offset: 2px; }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-brown-light focus:text-coffee-text focus:px-4 focus:py-2 focus:rounded">
+    Skip to main content
+  </a>
+  <nav class="fixed top-0 w-full z-40 bg-beige/90 backdrop-blur-md border-b border-brown-lighter/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-brown-dark flex items-center justify-center text-white font-serif font-bold text-sm shadow-cozy">CT</div>
+          <span class="font-serif font-bold text-2xl text-coffee-text tracking-tight">Coffee Time</span>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#hero" class="text-coffee-text hover:text-brown-dark transition-colors">Home</a>
+          <a href="#menu" class="text-coffee-text hover:text-brown-dark transition-colors">Menu</a>
+          <a href="#about" class="text-coffee-text hover:text-brown-dark transition-colors">About</a>
+          <a href="#contact" class="text-coffee-text hover:text-brown-dark transition-colors">Contact</a>
+        </div>
+        <div class="flex items-center gap-4">
+          <button class="hidden sm:block px-5 py-2 bg-brown-dark text-white rounded-full text-sm font-medium hover:bg-brown transition-colors shadow-cozy hover:shadow-cozy-lg">View Menu</button>
+          <button id="mobile-menu-btn" class="md:hidden text-coffee-text hover:text-brown-dark" aria-label="Toggle mobile menu" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden border-t border-brown-lighter bg-beige">
+      <div class="px-4 pt-4 pb-6 space-y-4">
+        <a href="#hero" class="block px-4 py-2 text-coffee-text hover:text-brown-dark">Home</a>
+        <a href="#menu" class="block px-4 py-2 text-coffee-text hover:text-brown-dark">Menu</a>
+        <a href="#about" class="block px-4 py-2 text-coffee-text hover:text-brown-dark">About</a>
+        <a href="#contact" class="block px-4 py-2 text-coffee-text hover:text-brown-dark">Contact</a>
+        <button class="w-full px-4 py-2 bg-brown-dark text-white rounded-xl text-sm font-medium hover:bg-brown transition-colors shadow-cozy text-center">View Menu</button>
+      </div>
+    </div>
+  </nav>
+  <section id="hero" class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bc64f907?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Freshly brewed coffee with steam" class="w-full h-full object-cover" loading="lazy" />
+      <div class="hero-overlay absolute inset-0 z-10"></div>
+    </div>
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block mb-4 px-4 py-1.5 bg-brown-lighter text-brown-dark text-xs font-semibold tracking-wider rounded-full uppercase">Freshly Brewed &middot; Locally Roasted</span>
+      <h1 class="font-serif text-5xl md:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-md">Wake Up to the Aroma<br>of Freshly Brewed Coffee</h1>
+      <p class="text-lg md:text-xl text-brown-lighter mb-8 max-w-2xl mx-auto font-light leading-relaxed">A warm, cozy corner where every cup is crafted with care. Come in and enjoy the comfort of good coffee and great company.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#menu" class="px-8 py-3 bg-white text-brown-dark font-semibold rounded-full text-sm hover:bg-brown-lighter transition-all shadow-cozy">View Menu</a>
+        <a href="#contact" class="px-8 py-3 bg-transparent border border-white text-white font-semibold rounded-full text-sm hover:bg-white/10 transition-all">Visit Us</a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce"><a href="#menu" class="text-white text-sm font-medium opacity-80 hover:opacity-100 transition-opacity">Scroll down <span aria-hidden="true">&darr;</span></a></div>
+  </section>
+
+  <section id="about" class="section-padding bg-beige-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-text mb-4">More than just coffee</h2>
+        <p class="text-lg text-brown-dark/80">We believe great coffee brings people together. From sourcing beans to the last sip, every detail is made with warmth and care.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-cozy border border-brown-lighter text-center">
+          <div class="w-12 h-12 bg-brown-lighter text-brown-dark rounded-lg flex items-center justify-center mx-auto mb-6 font-bold text-xl">☕</div>
+          <h3 class="font-serif text-xl font-bold text-coffee-text mb-3">Handcrafted Drinks</h3>
+          <p class="text-brown-dark/70 leading-relaxed">Espresso, pour-over, cold brew, and seasonal lattes made by skilled baristas.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-cozy border border-brown-lighter text-center">
+          <div class="w-12 h-12 bg-brown-lighter text-brown-dark rounded-lg flex items-center justify-center mx-auto mb-6 font-bold text-xl">🥐</div>
+          <h3 class="font-serif text-xl font-bold text-coffee-text mb-3">Fresh Pastries</h3>
+          <p class="text-brown-dark/70 leading-relaxed">Daily baked croissants, muffins, and cookies to pair perfectly with your coffee.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-cozy border border-brown-lighter text-center">
+          <div class="w-12 h-12 bg-brown-lighter text-brown-dark rounded-lg flex items-center justify-center mx-auto mb-6 font-bold text-xl">🫶</div>
+          <h3 class="font-serif text-xl font-bold text-coffee-text mb-3">Cozy Atmosphere</h3>
+          <p class="text-brown-dark/70 leading-relaxed">Warm lighting, comfortable seating, and a welcoming space to relax or work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="section-padding bg-beige">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-text mb-4">Our Menu</h2>
+        <div class="h-1 w-16 bg-brown-dark mx-auto rounded-full"></div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button data-category="all" class="menu-filter active px-5 py-2 rounded-full bg-brown-dark text-white text-sm font-medium shadow-cozy">All</button>
+        <button data-category="coffee" class="menu-filter px-5 py-2 rounded-full border border-brown-light text-brown-dark text-sm font-medium hover:bg-brown-lighter transition-colors">Coffee</button>
+        <button data-category="cold" class="menu-filter px-5 py-2 rounded-full border border-brown-light text-brown-dark text-sm font-medium hover:bg-brown-lighter transition-colors">Cold Drinks</button>
+        <button data-category="pastry" class="menu-filter px-5 py-2 rounded-full border border-brown-light text-brown-dark text-sm font-medium hover:bg-brown-lighter transition-colors">Pastries</button>
+      </div>
+
+      <div id="menu-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-padding bg-beige-dark">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-coffee-text mb-4">Get in Touch</h2>
+          <p class="text-brown-dark/80 text-lg mb-8 leading-relaxed">Have a question or want to place an order? Send us a message and we'll get back to you as soon as we can.</p>
+
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-full bg-brown-light text-brown-dark flex-shrink-0 flex items-center justify-center text-sm font-bold mt-0.5">📍</div>
+              <div>
+                <p class="font-medium text-coffee-text">Visit Us</p>
+                <p class="text-brown-dark/70 text-sm">123 Main Street<br>Downtown, Your Town</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-full bg-brown-light text-brown-dark flex-shrink-0 flex items-center justify-center text-sm font-bold mt-0.5">☎️</div>
+              <div>
+                <p class="font-medium text-coffee-text">Call Us</p>
+                <p class="text-brown-dark/70 text-sm">(555) 123-4567</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-full bg-brown-light text-brown-dark flex-shrink-0 flex items-center justify-center text-sm font-bold mt-0.5">🕒</div>
+              <div>
+                <p class="font-medium text-coffee-text">Hours</p>
+                <p class="text-brown-dark/70 text-sm">Mon–Fri: 7am–6pm<br>Sat–Sun: 8am–5pm</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 flex gap-3">
+            <a href="#" class="flex-1 px-5 py-3 bg-brown-dark text-white rounded-xl text-sm font-medium text-center hover:bg-brown transition-colors shadow-cozy">Instagram</a>
+            <a href="#" class="flex-1 px-5 py-3 bg-brown-dark text-white rounded-xl text-sm font-medium text-center hover:bg-brown transition-colors shadow-cozy">Facebook</a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 md:p-10 shadow-cozy-lg border border-brown-lighter">
+          <form id="contact-form" novalidate class="space-y-5">
+            <div>
+              <label for="name" class="block text-sm font-medium text-coffee-text mb-1.5">Full Name</label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl border border-brown-lighter bg-beige text-coffee-text focus:border-brown-dark focus:ring-0 transition-colors placeholder-brown-light/60" placeholder="John Doe" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-coffee-text mb-1.5">Email Address</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-brown-lighter bg-beige text-coffee-text focus:border-brown-dark focus:ring-0 transition-colors placeholder-brown-light/60" placeholder="john@example.com" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-coffee-text mb-1.5">Message</label>
+              <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-xl border border-brown-lighter bg-beige text-coffee-text focus:border-brown-dark focus:ring-0 transition-colors placeholder-brown-light/60" placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" class="w-full py-4 bg-brown-dark text-white rounded-xl font-medium text-sm hover:bg-brown transition-colors shadow-cozy hover:shadow-cozy-lg flex items-center justify-center gap-2">
+              Send Message
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </button>
+            <p id="form-message" class="mt-3 text-sm text-green-700 hidden">Thank you! Your message has been sent.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-brown-dark text-white border-t border-brown/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-7 h-7 rounded-full bg-brown-lighter text-brown-dark flex items-center justify-center text-[10px] font-bold">CT</div>
+            <span class="font-serif font-bold text-xl text-white">Coffee Time</span>
+          </div>
+          <p class="text-brown-lighter/80 text-sm leading-relaxed max-w-xs">Your neighborhood coffee shop serving handcrafted drinks and fresh pastries in a warm, cozy setting.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-medium text-sm uppercase tracking-wider mb-6">Location</h4>
+          <p class="text-brown-lighter/80 text-sm leading-relaxed mb-3">123 Main Street<br>Downtown, Your Town</p>
+          <p class="text-brown-lighter/80 text-sm leading-relaxed">(555) 123-4567</p>
+        </div>
+        <div>
+          <h4 class="text-white font-medium text-sm uppercase tracking-wider mb-6">Hours</h4>
+          <ul class="space-y-2 text-brown-lighter/80 text-sm">
+            <li>Mon–Fri: 7am–6pm</li>
+            <li>Sat–Sun: 8am–5pm</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-medium text-sm uppercase tracking-wider mb-6">Newsletter</h4>
+          <p class="text-brown-lighter/80 text-sm mb-4">Subscribe for updates and seasonal offers.</p>
+          <form class="flex gap-2">
+            <input type="email" placeholder="Your email" class="flex-1 px-4 py-3 rounded-xl border border-brown-lighter bg-brown/20 text-white placeholder-brown-lighter/50 focus:border-brown-lighter focus:outline-none transition-colors" />
+            <button type="submit" class="px-4 py-3 bg-white text-brown-dark rounded-xl font-medium text-xs hover:bg-brown-lighter transition-colors">Go</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-t border-brown/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brown-lighter/70">
+        <p>&copy; 2026 Coffee Time. All rights reserved.</p>
+        <div class="flex gap-5">
+          <a href="#" class="hover:text-white transition-colors">Instagram</a>
+          <a href="#" class="hover:text-white transition-colors">Facebook</a>
+          <a href="#" class="hover:text-white transition-colors">Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a, button').forEach((el) => {
+      el.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const menuItems = [
+      { id: 1, name: 'Espresso', category: 'coffee', description: 'Rich, bold single shot with a velvety crema.', price: '$2.75' },
+      { id: 2, name: 'Cappuccino', category: 'coffee', description: 'Espresso with steamed milk and thick foam.', price: '$4.25' },
+      { id: 3, name: 'Latte', category: 'coffee', description: 'Smooth espresso with velvety steamed milk.', price: '$4.50' },
+      { id: 4, name: 'Cold Brew', category: 'cold', description: 'Steeped 16 hours for a smooth, low-acid finish.', price: '$4.00' },
+      { id: 5, name: 'Iced Latte', category: 'cold', description: 'Chilled espresso over milk with a hint of sweetness.', price: '$4.75' },
+      { id: 6, name: 'Croissant', category: 'pastry', description: 'Buttery, flaky French-style croissant baked daily.', price: '$3.50' },
+      { id: 7, name: 'Blueberry Muffin', category: 'pastry', description: 'Moist muffin packed with fresh blueberries.', price: '$3.75' },
+      { id: 8, name: 'Chocolate Cookie', category: 'pastry', description: 'Chewy cookie with chunks of dark chocolate.', price: '$2.95' },
+      { id: 9, name: 'Pour Over', category: 'coffee', description: 'Single-origin coffee brewed to order.', price: '$5.00' },
+    ];
+
+    const menuGrid = document.getElementById('menu-grid');
+    const filterButtons = document.querySelectorAll('.menu-filter');
+
+    function renderMenu(category = 'all') {
+      menuGrid.innerHTML = '';
+      const filtered = category === 'all' ? menuItems : menuItems.filter((item) => item.category === category);
+      filtered.forEach((item) => {
+        const card = document.createElement('article');
+        card.className = 'cozy-card bg-white rounded-2xl p-5 shadow-sm border border-brown-lighter hover:shadow-cozy transition-all duration-200';
+        card.innerHTML = `
+          <div class="h-32 rounded-xl bg-brown-lighter mb-4 flex items-center justify-center overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1447933601403-0c668e4d55e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="${item.name}" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy" />
+            <span class="absolute top-2 right-2 bg-brown-dark text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${item.category}</span>
+          </div>
+          <div class="flex justify-between items-baseline mb-1">
+            <h3 class="font-serif text-lg font-bold text-coffee-text">${item.name}</h3>
+            <span class="font-semibold text-brown-dark">${item.price}</span>
+          </div>
+          <p class="text-sm text-brown-dark/70 leading-relaxed">${item.description}</p>
+        `;
+        menuGrid.appendChild(card);
+      });
+    }
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach((b) => {
+          b.classList.remove('bg-brown-dark', 'text-white', 'shadow-cozy');
+          b.classList.add('border', 'border-brown-light', 'text-brown-dark');
+        });
+        btn.classList.remove('border', 'border-brown-light', 'text-brown-dark');
+        btn.classList.add('bg-brown-dark', 'text-white', 'shadow-cozy');
+        renderMenu(btn.dataset.category);
+      });
+    });
+
+    renderMenu();
+
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
+      console.log('Contact form submitted:', data);
+      contactForm.reset();
+      formMessage.classList.remove('hidden');
+      setTimeout(() => { formMessage.classList.add('hidden'); }, 5000);
+    });
+  </script>
+</body>
+</html>
